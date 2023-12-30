@@ -1,15 +1,14 @@
 $white: #ffffff;
 $black: #000000;
-// $primary1: #0cb1a8;
-$primary1: #00bbf0;
-$primary2: #00204a;
+$primary1: #7335b7;
+$primary2: #f8842b;
 $textCol: #1f1f1f;
 
-// import fonts - font-family: 'Open Sans', sans-serif;
-@import url("https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Open+Sans:wght@300;400;600;700&display=swap");
+// import fonts
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap");
 
 @mixin main-font {
-  font-family: "Open Sans", sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
 @mixin hero_btn($col1, $col2, $pad1, $pad2, $bRadius) {
@@ -19,10 +18,11 @@ $textCol: #1f1f1f;
   color: $col2;
   border-radius: $bRadius;
   transition: all 0.3s;
-  border: none;
+  border: 1px solid $col1;
 
   &:hover {
-    background-color: darken($color: $col1, $amount: 15);
+    color: $col2;
+    transform: translateY(-3px);
   }
 }
 
@@ -40,6 +40,10 @@ body {
 
 .layout_padding {
   padding: 90px 0;
+}
+
+.layout_margin {
+  margin: 90px 0;
 }
 
 .layout_padding2 {
@@ -70,16 +74,10 @@ body {
   h2 {
     position: relative;
     font-weight: bold;
-    margin-bottom: 0;
 
     span {
       color: $primary1;
     }
-  }
-
-  p {
-    margin-top: 10px;
-    margin-bottom: 0;
   }
 
   &.heading_center {
@@ -111,41 +109,15 @@ a:focus {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-
-  .hero_bg_box {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: flex-end;
-    overflow: hidden;
-    z-index: -1;
-
-    .bg_img_box {
-      min-width: 100%;
-      min-height: 100%;
-    }
-
-    img {
-      min-width: 100%;
-      min-height: 100%;
-    }
-  }
+  background-color: $primary1;
+  border-radius: 0 0 350px 0;
 }
 
 .sub_page {
   .hero_area {
     min-height: auto;
-    background: linear-gradient(130deg, #231a6f, #0f054c);
-
-    .hero_bg_box {
-      display: none;
-    }
+    border-radius: 0 0 45px 0;
   }
-
 }
 
 .header_section {
@@ -160,8 +132,8 @@ a:focus {
 .navbar-brand {
   span {
     font-weight: bold;
-    font-size: 24px;
     color: $white;
+    font-size: 24px;
   }
 }
 
@@ -169,11 +141,11 @@ a:focus {
   padding: 0;
 
   .navbar-nav {
-    margin-left: auto;
+    margin: auto;
 
     .nav-item {
       .nav-link {
-        padding: 5px 20px;
+        padding: 5px 25px;
         color: $white;
         text-align: center;
         text-transform: uppercase;
@@ -184,28 +156,11 @@ a:focus {
       &:hover,
       &.active {
         .nav-link {
-          color: $primary1;
-        }
-      }
-
-      &.active {
-        .nav-link {
-          font-weight: 600;
+          color: $black;
+          background-color: $white;
         }
       }
     }
-  }
-}
-
-.custom_nav-container .nav_search-btn {
-  width: 35px;
-  height: 35px;
-  padding: 0;
-  border: none;
-  color: $white;
-
-  &:hover {
-    color: $primary1;
   }
 }
 
@@ -261,10 +216,53 @@ a:focus {
       }
     }
 
+    .s-1 {
+      transform: rotate(45deg);
+      margin: 0;
+      margin-bottom: -4px;
+    }
 
+    .s-2 {
+      display: none;
+    }
+
+    .s-3 {
+      transform: rotate(-45deg);
+      margin: 0;
+      margin-top: -4px;
+    }
   }
 
+  &[aria-expanded="false"] {
 
+    .s-1,
+    .s-2,
+    .s-3 {
+      transform: none;
+    }
+  }
+}
+
+.quote_btn-container {
+  display: flex;
+  align-items: center;
+
+  a {
+    color: $black;
+    text-transform: uppercase;
+
+    span {
+      margin-left: 5px;
+    }
+
+    &:hover {
+      color: $primary2;
+    }
+  }
+
+  .quote_btn {
+    @include hero_btn($primary2, $white, 5px, 25px, 5px);
+  }
 }
 
 /*end header section*/
@@ -274,8 +272,7 @@ a:focus {
   flex: 1;
   display: flex;
   align-items: center;
-  position: relative;
-  padding: 45px 0 145px 0;
+  padding: 45px 0;
 
   .row {
     align-items: center;
@@ -287,63 +284,41 @@ a:focus {
   }
 
   .detail-box {
-    color: $primary2;
+    text-align: center;
+    color: $white;
 
     h1 {
-      font-size: 3rem;
       font-weight: bold;
-      text-transform: uppercase;
-      margin-bottom: 15px;
-      color: $white;
+      margin-bottom: 20px;
     }
 
-    p {
-      color: #fefefe;
-      font-size: 14px;
-    }
+    p {}
 
     .btn-box {
       display: flex;
+      justify-content: center;
       margin: 0 -5px;
-      margin-top: 25px;
+      margin-top: 45px;
 
       a {
         margin: 5px;
         text-align: center;
-        width: 165px;
+        width: 185px;
       }
 
       .btn1 {
-        @include hero_btn($primary1, $white, 10px, 15px, 0);
-      }
-
-      .btn2 {
-        @include hero_btn($black, $white, 10px, 15px, 0);
+        @include hero_btn(darken($color: $primary1, $amount: 10),
+          $white,
+          12px,
+          15px,
+          5px);
       }
     }
   }
 
   .img-box {
-    margin: 45px 0;
-
     img {
       width: 100%;
-      animation: upDown 5s infinite;
-    }
-
-  }
-
-  @keyframes upDown {
-    0% {
-      transform: translateY(-45px);
-    }
-
-    50% {
-      transform: translateY(45px);
-    }
-
-    100% {
-      transform: translateY(-45px);
     }
   }
 
@@ -352,18 +327,19 @@ a:focus {
     margin: 0;
     justify-content: center;
     align-items: center;
+    margin-top: 45px;
 
     li {
       background-color: $white;
-      width: 12px;
-      height: 12px;
+      width: 15px;
+      height: 15px;
       border-radius: 100%;
       opacity: 1;
 
       &.active {
-        width: 20px;
-        height: 20px;
-        background-color: $primary1;
+        width: 23px;
+        height: 23px;
+        background-color: $primary2;
       }
     }
   }
@@ -374,52 +350,75 @@ a:focus {
 // service section
 
 .service_section {
-  position: relative;
+  text-align: center;
+
+  .heading_container {
+    align-items: center;
+  }
 
   .box {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    margin-top: 45px;
-    background-color: #f8f8f9;
-    padding: 20px;
-    border-radius: 5px;
+    margin-top: 25px;
+    // background: darken($color: $primary1, $amount: 10);
+    // color: $white;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 0 5px 0 rgba($color: #000000, $alpha: 0.25);
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s;
+
+    &::before {
+      content: "";
+      width: 275px;
+      height: 275px;
+      position: absolute;
+      right: -137.5px;
+      bottom: -137.5px;
+      background-color: lighten($color: $primary1, $amount: 52);
+      z-index: -1;
+      border-radius: 100%;
+      transition: all 0.3s;
+    }
 
     .img-box {
       display: flex;
       justify-content: center;
-      align-items: flex-start;
-      width: 125px;
-      min-width: 75px;
-      height: 75px;
-      margin-bottom: 15px;
+      align-items: center;
+      height: 125px;
+      border-radius: 15px;
+      transition: all 0.3s;
 
       img {
-        max-width: 100%;
-        max-height: 100%;
+        width: 75px;
         transition: all 0.3s;
       }
     }
 
     .detail-box {
+      margin-top: 15px;
+
       h5 {
         font-weight: bold;
-        text-transform: uppercase;
+        position: relative;
       }
 
-      p {}
-
       a {
-        color: $primary2;
-        font-weight: 600;
-
-        &:hover {
-          color: $primary1;
-        }
+        color: inherit;
       }
     }
 
+    &:hover {
+      &::before {
+        transform: scale(5);
+        background-color: $primary1;
+      }
+
+      color: $white;
+
+      img {
+        filter: invert(1);
+      }
+    }
   }
 
   .btn-box {
@@ -428,7 +427,7 @@ a:focus {
     margin-top: 45px;
 
     a {
-      @include hero_btn($primary1, $white, 10px, 45px, 0);
+      @include hero_btn($primary1, $white, 10px, 45px, 5px);
     }
   }
 }
@@ -437,34 +436,29 @@ a:focus {
 
 // about section
 .about_section {
-  background-color: $primary2;
+  background-color: $primary1;
   color: $white;
-
-  .heading_container {
-    margin-bottom: 45px;
-  }
+  border-radius: 250px 0 250px 0;
 
   .row {
     align-items: center;
   }
 
   .img-box {
+    position: relative;
+
     img {
-      max-width: 100%;
+      width: 100%;
     }
   }
 
   .detail-box {
-    h3 {
-      font-weight: bold;
-    }
-
     p {
       margin-top: 15px;
     }
 
     a {
-      @include hero_btn($primary1, $white, 10px, 45px, 0px);
+      @include hero_btn($primary2, $white, 10px, 45px, 5px);
       margin-top: 15px;
     }
   }
@@ -472,226 +466,200 @@ a:focus {
 
 // end about section
 
-// why section
+// case section
+.case_section {
+  .heading_container {
+    align-items: center;
 
-.why_section {
+    h2 {
+      &::before {
+        left: 50%;
+        transform: translateX(-50%);
+      }
+    }
+  }
 
   .box {
     margin-top: 45px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    background-color: $white;
+    box-shadow: 0 0 10px 0 rgba($color: #000000, $alpha: 0.15);
     text-align: center;
 
     .img-box {
-      margin-bottom: 20px;
-      width: 120px;
-      height: 120px;
-      min-width: 120px;
-      min-height: 120px;
-      border-radius: 100%;
-      border: 5px solid $primary2;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-
-      img {
-        width: 55px;
-        height: auto;
-        fill: $primary2;
-      }
-    }
-
-    h5 {
-      font-weight: bold;
-      margin-bottom: 10px;
-    }
-
-    p {
-      margin-bottom: 0;
-    }
-  }
-
-  .btn-box {
-    display: flex;
-    justify-content: center;
-    margin-top: 45px;
-
-    a {
-      @include hero_btn($primary1, $white, 10px, 45px, 0);
-    }
-  }
-}
-
-// end why section
-
-/*team section */
-
-.team_section {
-  text-align: center;
-  background-color: $primary2;
-  color: $white;
-
-  .heading_container {
-    justify-content: center;
-  }
-
-  .team_container {
-    padding: 0 15px;
-
-    .box {
-      padding: 35px 0 0 0;
-      border-radius: 5px;
-      overflow: hidden;
-      transition: all .1s;
-      margin-top: 45px;
-      // background-color: #053068;
-      background: linear-gradient(to bottom, lighten($color: $primary2, $amount: 3), lighten($color: $primary2, $amount: 5));
-
-      .img-box {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-
-        img {
-          width: 120px;
-          border-radius: 100%;
-          border: 5px solid $white;
-        }
-
-      }
-
-      .detail-box {
-        margin: 25px 0;
-
-        h5 {
-          color: $primary1;
-          font-weight: 600;
-          position: relative;
-        }
-
-      }
-
-      .social_box {
-        padding: 10px 45px 20px 45px;
-        display: flex;
-        justify-content: space-between;
-
-        a {
-          color: $white;
-          font-size: 22px;
-
-          &:hover {
-            color: $primary1;
-          }
-        }
-      }
-    }
-  }
-
-
-}
-
-/*team section end*/
-
-/* client section start */
-
-.client_section {
-  .heading_container {
-    margin-bottom: 30px;
-  }
-
-  .box {
-    display: flex;
-    flex-direction: column;
-    margin: 15px;
-
-    .img-box {
-      position: relative;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: 100px;
-      margin-bottom: -50px;
-      margin-left: 25px;
       position: relative;
 
       img {
-        border-radius: 100%;
-      }
-    }
-
-    .client_id {
-      display: flex;
-      justify-content: space-between;
-
-      .client_info {
-        h6 {
-          font-weight: 600;
-          margin-bottom: 5px;
-        }
-
-        p {
-          margin-bottom: 0;
-          font-size: 15px;
-          font-size: 14px;
-          margin-bottom: 10px;
-        }
+        width: 100%;
       }
     }
 
     .detail-box {
-      background-color: $white;
-      box-shadow: 0 0 15px 0 rgba($color: #000000, $alpha: 0.15);
-      padding: 75px 25px 25px 25px;
+      padding: 25px;
 
-      i {
-        color: $primary2;
-        margin-bottom: 10px;
+      h5 {
+        font-weight: bold;
       }
-    }
-  }
 
-  .owl-carousel {
-    .owl-nav {
-      display: flex;
-      justify-content: center;
-      margin-top: 45px;
+      p {
+        font-size: 15px;
+      }
 
-      .owl-prev,
-      .owl-next {
-        width: 55px;
-        height: 55px;
-        background-color: $white;
-        color: $black;
-        outline: none;
-        bottom: 0px;
-        font-size: 24px;
-        box-shadow: 0 0 5px 0 rgba($color: #000000, $alpha: 0.25);
-
-        &:hover {
-          color: $primary2;
-        }
+      a {
+        color: $primary1;
       }
     }
   }
 }
 
-/* client section end */
+// end case section
 
-// info section
-.info_section {
-  background-color: $primary2;
+// client section
+
+.client_section {
+  .box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 45px 0;
+    text-align: center;
+
+    .img-box {
+      width: 125px;
+      height: 125px;
+      min-width: 125px;
+      position: relative;
+      margin-bottom: -62.5px;
+
+      img {
+        width: 100%;
+        border-radius: 100%;
+      }
+    }
+
+    .client_info {
+      .client_name {
+        h5 {
+          font-weight: bold;
+          margin-bottom: 0;
+          text-transform: uppercase;
+        }
+
+        h6 {
+          margin-bottom: 0;
+          color: $primary1;
+          font-weight: normal;
+          font-size: 15px;
+          text-transform: uppercase;
+        }
+      }
+
+      i {
+        font-size: 24px;
+      }
+    }
+
+    p {
+      margin-top: 15px;
+    }
+
+    .detail-box {
+      background-color: $white;
+      background-color: $primary1;
+      color: $white;
+      border-radius: 15px;
+      padding: 85px 45px 15px 45px;
+    }
+  }
+
+  .carousel-indicators {
+    position: unset;
+    margin: 0;
+    justify-content: center;
+    align-items: center;
+
+    li {
+      background-color: $primary1;
+      width: 10px;
+      height: 10px;
+      border-radius: 100%;
+      opacity: 1;
+
+      &.active {
+        width: 20px;
+        height: 20px;
+        background-color: $primary2;
+      }
+    }
+  }
+}
+
+// end client section
+
+// contact section
+.contact_section {
+  position: relative;
+
+  form {
+    margin-top: 45px;
+  }
+
+  input {
+    width: 100%;
+    border: none;
+    height: 50px;
+    margin-bottom: 25px;
+    padding-left: 15px;
+    background-color: transparent;
+    outline: none;
+    color: $black;
+    border: 1px solid #a5a5a5;
+
+    &::placeholder {
+      color: #1c1b1b;
+    }
+
+    &.message-box {
+      height: 120px;
+    }
+  }
+
+  button {
+    @include main-font();
+    @include hero_btn($primary1, $white, 10px, 65px, 3px);
+    color: #fff;
+    margin-top: 10px;
+  }
+
+  .map_container {
+    height: 100%;
+    min-height: 325px;
+    overflow: hidden;
+    margin-left: 45px;
+
+    .map {
+      height: 100%;
+
+      #googleMap {
+        height: 100%;
+      }
+    }
+  }
+}
+
+// end contact section
+
+.footer_container {
+  background-color: $primary1;
   color: $white;
-  padding: 45px 0 15px 0;
+  border-radius: 350px 0 0 0;
+  padding-top: 145px;
+}
 
+/* info section */
+.info_section {
   h4 {
     font-weight: 600;
     margin-bottom: 20px;
-  }
-
-  .info_col {
-    margin-bottom: 30px;
   }
 
   .info_contact {
@@ -708,7 +676,7 @@ a:focus {
         }
 
         &:hover {
-          color: $primary1;
+          color: $primary2;
         }
       }
     }
@@ -717,7 +685,6 @@ a:focus {
   .info_social {
     display: flex;
     margin-top: 20px;
-    margin-bottom: 10px;
 
     a {
       display: flex;
@@ -729,7 +696,7 @@ a:focus {
       font-size: 24px;
 
       &:hover {
-        color: $primary1;
+        color: $primary2;
       }
     }
   }
@@ -746,7 +713,7 @@ a:focus {
       color: $white;
 
       &:hover {
-        color: $primary1;
+        color: $primary2;
       }
     }
   }
@@ -769,23 +736,21 @@ a:focus {
     button {
       width: 100%;
       text-align: center;
-      @include hero_btn($primary1, $white, 10px, 55px, 0);
+      @include hero_btn($primary2, $white, 10px, 55px, 0);
       margin-top: 15px;
     }
   }
 }
 
-// end info section
+/* end info section */
 
 /* footer section*/
 
 .footer_section {
   position: relative;
-  background-color: $white;
   text-align: center;
 
   p {
-    color: $primary2;
     padding: 25px 0;
     margin: 0;
 
